@@ -20,44 +20,140 @@ def b_5(x, y):
     if (x == 1 and y == 2): return 1
     if (x == 2 and y == 1): return 2
     else: return 0
+def f_3(x_0,x_1,x_2,x_3):
+    n = 0
+    m = 0
+    if x_0==1: return 1
+    elif x_0==2:
+        if(x_1==0 or x_2==0 or x_3==0): return 0
+        else: return 2
+    elif x_0 == 0:
+        if (x_1 == 1): n += 1
+        if (x_2 == 1): n += 1
+        if (x_3 == 1): n += 1
+        if (x_1 == 2): m += 1
+        if (x_2 == 2): m += 1
+        if (x_3 == 2): m += 1
+        if (n == 0):
+            return 0
+        elif (n == 1 and m == 2):
+            return 0
+        else:
+            return 1
+def f_4(x_0,x_1,x_2,x_3,x_4):
+    n = 0
+    m = 0
+    if x_0==1: return 1
+    elif x_0==2:
+        if(x_1==0 or x_2==0 or x_3==0 or x_4==0): return 0
+        else: return 2
+    elif x_0 == 0:
+        if (x_1 == 1): n += 1
+        if (x_2 == 1): n += 1
+        if (x_3 == 1): n += 1
+        if (x_4 == 1): n += 1
+        if (x_1 == 2): m += 1
+        if (x_2 == 2): m += 1
+        if (x_3 == 2): m += 1
+        if (x_4 == 2): m += 1
+        if (n == 0):
+            return 0
+        elif (n == 1 and m == 3):
+            return 0
+        else:
+            return 1
+def f_5(x_0,x_1,x_2,x_3,x_4,x_5):
+    n=0
+    m=0
+    if x_0==1: return 1
+    elif x_0==2:
+        if(x_1==0 or x_2==0 or x_3==0 or x_4==0 or x_5==0): return 0
+        else: return 2
+    elif x_0==0:
+        if(x_1==1): n+=1
+        if(x_2==1): n+=1
+        if (x_3 == 1): n += 1
+        if (x_4 == 1): n += 1
+        if (x_5 == 1): n += 1
+        if (x_1 ==2): m += 1
+        if (x_2 ==2): m += 1
+        if (x_3 ==2): m += 1
+        if (x_4 ==2): m += 1
+        if (x_5 ==2): m += 1
+        if(n==0): return 0
+        elif(n==1 and m==4): return 0
+        else: return 1
+
+def check_fs(data): #return 0 if check is not successful and 1 otherwise
+    #here we check f_3
+    check_f_3=1
+    for list in data:
+        set_list=set(list)
+        n = len(list)
+        x = itertools.product(set_list, repeat=4)
+        set_list2 = set(map(lambda y: tuple(f_3(*a) for a in zip(*y)), x))
+        set_list = set_list.union(set_list2)
+        # for tup in data:
+        #    print(tup)
+        # print()
+        if len(set_list) != n:
+            check_f_3=0
+            print(list)
+    #if(check_f_3==0): return 0
+    #here we check f_4
+    check_f_4=1
+    for list in data:
+        set_list=set(list)
+        n = len(list)
+        x = itertools.product(set_list, repeat=4)
+        set_list2 = set(map(lambda y: tuple(f_3(*a) for a in zip(*y)), x))
+        set_list = set_list.union(set_list2)
+        # for tup in data:
+        #    print(tup)
+        # print()
+        if len(set_list) != n:
+            check_f_4=0
+            print(list)
+    #if(check_f_4==0): return 0
+    #here we check f_5
+    check_f_5=1
+    for list in data:
+        set_list=set(list)
+        n = len(list)
+        x = itertools.product(set_list, repeat=4)
+        set_list2 = set(map(lambda y: tuple(f_3(*a) for a in zip(*y)), x))
+        set_list = set_list.union(set_list2)
+        # for tup in data:
+        #    print(tup)
+        # print()
+        if len(set_list) != n:
+            check_f_5=0
+            print(list)
+    #if(check_f_5==0): return 0
+    if(check_f_3==0 or check_f_4==0 or check_f_5==0): return 0
+    else: return 1
+
+
+
 with open('data.txt', 'r') as input:
     data = input.readlines()
     #data = list(data)
     #data=data.split
     #del data[-1]
 #print(data)
-data2=[]
+data2=[[]]
+i=-1
 for str in data:
     #str.split()
-    data2.append(tuple([int(i) for i in str.split()]))
+    #print(len(str))
+    if(len(str)==1):
+        i+=1
+        data2.append([])
+        #print(2)
+    else:data2[i].append(tuple([int(i) for i in str.split()]))
 #print(data2)
-data = data2
-data = set(data)
-#print(data)
-#for tup in data:
-#    print(tup)
-while True:
-    n = len(data)
-    x = itertools.product(data, repeat=2)
-    data2 = set(map(lambda y: tuple(b_5(*a) for a in zip(*y)), x))
-    data = data.union(data2)
-    #for tup in data:
-    #    print(tup)
-    #print()
-    if len(data) == n:
-        break
-#print((1,0,0) in data)
-#print((1,0,0,0,0) in data)
-#print((1,0,0,0,2) in data)
-#print((1,1,1,0,0) in data)
-#print(len(data))
 
-# output = open("dataout.txt", "w")
-for tup in data:
-    if tup[4]==2 and tup[3]==0 and tup[2]==1: print(tup[0],tup[1],sep=' ',end='\n')
-    #str = functools.reduce(operator.add, (tup))
-    #output.write(str)
-# output.close()
-# input.close()
-#print(len(signature(b_6).parameters))
-#with open('data.txt', 'w') vvas f:
+data = data2
+print(check_fs(data))
+
+
