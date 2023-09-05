@@ -154,6 +154,19 @@ for str in data:
 #print(data2)
 
 data = data2
+zero_one={0,1}
+zero_one_two={0,1,2}
+interim_values_of_f=itertools.product(zero_one,repeat=12)
+interim_2_values_of_f=itertools.product(zero_one_two,repeat=12)
+values_of_f=set(i+j for i,j in itertools.product(interim_values_of_f,interim_2_values_of_f))
+print(len(values_of_f))
+def adder(x):
+   def inner(y):
+      return x + y
+   return inner
+
+add_one = adder(1)
+print(add_one(5))
 print(check_fs(data))
 
 
