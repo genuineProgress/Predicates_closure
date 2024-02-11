@@ -1,3 +1,4 @@
+#some code scratch
 data = set(data)
 #print(data)
 #for tup in data:
@@ -28,3 +29,29 @@ for tup in data:
 # input.close()
 #print(len(signature(b_6).parameters))
 #with open('data.txt', 'w') vvas f:
+#def read_tuples_from_file(file_path):
+#    with open(file_path, 'r') as file:
+#        lines = file.readlines()
+#        tuples = [tuple(map(int, line.strip().split())) for line in lines]
+#    return tuples
+#def write_sorted_tuples_to_file(file_path, sorted_tuples):
+#    with open(file_path, 'w') as file:
+#        for sorted_tuple in sorted_tuples:
+#            formatted_tuple = ' '.join(map(str, sorted_tuple))
+#            file.write(formatted_tuple + '\n')
+#
+#file_path = 'tested_predicates/data_s_2_k_1_out'
+#tuples = read_tuples_from_file(file_path)
+#
+#sorted_tuples = sorted(tuples)
+#
+#write_sorted_tuples_to_file(file_path, sorted_tuples)
+#import itertools
+#n=3
+#my_list=[]
+#for i in range (0,n):
+#   future_tuple=[0]*n+[2]*n
+#   future_tuple[i]=future_tuple[n+i]=1
+#   future_tuple=[0,1]+future_tuple
+#   list.append(future_tuple)
+#print(list)
