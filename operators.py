@@ -84,3 +84,13 @@ def write_matrix_to_file(matrix, file_path):
     with open(file_path, 'w') as file:
         for row in matrix:
             file.write(' '.join(map(str, row)) + '\n')
+def generate_columns(size):
+    if size <= 0:
+        return [[]]
+    smaller_columns = generate_columns(size - 1)
+    columns = []
+    for col in smaller_columns:
+        for num in range(2):
+            new_col = col + [num]
+            columns.append(new_col)
+    return columns

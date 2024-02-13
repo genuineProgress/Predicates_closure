@@ -5,7 +5,7 @@ import function_def as f
 import operators as o
 tm=1 #that variable tells whether matrix from input_file_path should be transposed before processing, 1 - yes, 0 - no
 rp=0 #that variable tells whether program (except transposition) should be executed, 1 - yes, 0 - no
-input_file_path = output_file_path= 'predicates/trash_7'
+input_file_path = output_file_path = 'predicates/data_b_5_8_exception'
 if(tm==1):
     matrix = o.read_matrix_from_file(input_file_path)
     transposed_matrix = o.transpose_matrix(matrix)
@@ -22,6 +22,16 @@ print(count)
 print(data2)
 data = data2
 data = set(data)
+prel_data2=o.generate_columns(12)
+data2=set()
+for elem in prel_data2:
+    data2.add(tuple((elem)))
+data2=data2.difference(data)
+data2=list(data2)
+data2.sort()
+for tuple in data2:
+    o.printx(tuple)
+sys.exit()
 # below code fragment was needed once in the past check
 # for tuple in data:
 #     if(tuple[0]!=1 or tuple[1]!=1 or tuple[2]!=1 or tuple[3]!=1):
@@ -29,7 +39,7 @@ data = set(data)
 #             if(tuple[8]!=1 or tuple[9]!=1 or tuple[10]!=1 or tuple[11]!=1):
 #                 print(tuple)
 #                 break
-#print(data)
+print(data)
 
 #printing columns of our predicate as tuples
 #for tup in data:
@@ -37,9 +47,9 @@ data = set(data)
 iteration=0
 while True:
     n = len(data)
-    x = itertools.product(data, repeat=3)
+    x = itertools.product(data, repeat=2)
     #z = itertools.product(data, repeat=3)
-    data2 = set(map(lambda y: tuple(f.s_2(*a) for a in zip(*y)), x))
+    data2 = set(map(lambda y: tuple(f.b_5(*a) for a in zip(*y)), x))
     data = data.union(data2)
     # below code fragment is used to show tuples from which a particular tuple may be derived
     # for tuple1 in z:
@@ -51,6 +61,8 @@ while True:
     #print()
     iteration = iteration + 1
     print(iteration, len(data))
+    if(len(data)==n): break
+    n=len(data)
 # #print(len(data))
 # below code fragment was needed once in the past check
 # for x in range (0,3):
