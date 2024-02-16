@@ -5,7 +5,7 @@ import function_def as f
 import operators as o
 tm=1 #that variable tells whether matrix from input_file_path should be transposed before processing, 1 - yes, 0 - no
 rp=0 #that variable tells whether program (except transposition) should be executed, 1 - yes, 0 - no
-input_file_path = output_file_path = 'predicates/data_b_5_8_exception'
+input_file_path = output_file_path = 'predicates/test_1'
 if(tm==1):
     matrix = o.read_matrix_from_file(input_file_path)
     transposed_matrix = o.transpose_matrix(matrix)
