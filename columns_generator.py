@@ -4,7 +4,7 @@ def generate_columns(size):
     smaller_columns = generate_columns(size - 1)
     columns = []
     for col in smaller_columns:
-        for num in range(3):
+        for num in range(2):
             new_col = col + [num]
             columns.append(new_col)
     return columns

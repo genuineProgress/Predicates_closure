@@ -1,6 +1,6 @@
 tm=1 #that variable tells whether matrix from input_file_path should be transposed before processing, 1 - yes, 0 - no
-rp=1 #that variable tells whether program (except transposition) should be executed, 1 - yes, 0 - no
-input_file_path = output_file_path = 'tested_predicates/test_3'
+rp=0 #that variable tells whether program (except transposition) should be executed, 1 - yes, 0 - no
+input_file_path = output_file_path = 'predicates/data_b_9_3'
 # from inspect import signature
 import itertools
 import sys
@@ -47,21 +47,18 @@ data = set(data)
 iteration=0
 while True:
     n = len(data)
-    #x = itertools.product(data, repeat=2)
-    z = itertools.product(data, repeat=3)
-    data2 = set(map(lambda y: tuple(f.s_5(*a) for a in zip(*y)), z))
-    z = itertools.product(data, repeat=3)
+    x = itertools.product(data, repeat=2)
+    #z = itertools.product(data, repeat=3)
+    data2 = set(map(lambda y: tuple(f.b_9(*a) for a in zip(*y)), x))
     data = data.union(data2)
     # below code fragment is used to show tuples from which a particular tuple may be derived
-    for tuple1 in z:
-        tuple2 = lambda tuple1: tuple(f.s_5(*a) for a in zip(*tuple1))
-        #print(tuple2(tuple1))
-        if tuple2(tuple1)== (0, 0, 0, 0, 1, 0, 0):
-            print(tuple1)
-            break
-            #for tup in data:
-       #print(tup)
-    # print()
+    # for tuple1 in data:
+    #     tuple2=lambda tuple1: tuple(f.s_5(*a) for a in zip(*tuple1))
+    #     if tuple2(tuple1)==(2, 1, 0, 0, 0, 0, 0):
+    #          print(tuple1)
+    #         #for tup in data:
+    #    #print(tup)
+    # # print()
     iteration = iteration + 1
     print(iteration, len(data))
     if(len(data)==n): break

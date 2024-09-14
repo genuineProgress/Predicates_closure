@@ -1,3 +1,6 @@
+def b_9(x,y):
+    if(x!=2 or y!=0): return x
+    else: return 1
 def b_6(x, y):
     if (x == y): return x
     if (x == 0 and y == 1): return 1
@@ -132,6 +135,9 @@ def s_3(x_0,x_1,x_2):
 def s_4(x_0,x_1,x_2):
     if(x_0==2): return x_0
     if(x_0!=x_1 and x_1!=x_2 and x_0!=x_2): return (1-x_0)
+    return x_0
+def s_5(x_0,x_1,x_2):
+    if(x_0!=x_1 and x_1!=x_2 and x_0!=x_2): return x_1
     return x_0
 def check_s_2_out_tup(tup:tuple)->int:
     if (tup[5]==2 and tup[6]==1 and tup[7]==2): return 0
