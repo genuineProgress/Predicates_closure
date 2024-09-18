@@ -1,3 +1,4 @@
+import itertools
 def b_9(x,y):
     if(x!=2 or y!=0): return x
     else: return 1
@@ -154,7 +155,55 @@ def check_s_2_out_tup(tup:tuple)->int:
     if (tup[3] == 1 and tup[4] == 1 and  tup[7] == 2  and tup[8] == 2): return 0
     if (tup[5] == 1 and tup[6] == 1 and  tup[7] == 2  and tup[9] == 2): return 0
     return 1
-def seek_tuple(seek_tup,data_init,step):
+def seek_tuple(seek_tup,data_init,step)->str:
+    print(seek_tup)
+    iteration = 0
+    data = set(data_init)
+    while step==-1 or iteration<=step:
+        #print(data)
+        #print(1)
+        iteration=iteration+1
+        n = len(data)
+        print(step,iteration,n,data)
+        x = itertools.product(data, repeat=2)
+        data2 = set(map(lambda y: tuple(b_5(*a) for a in zip(*y)), x))
+        data = data.union(data2)
+        if(seek_tup in data):
+            if(step==-1): step=iteration+1
+            z = itertools.product(data, repeat=2)
+            for tuple_iter in z:
+                #print(tuple1[0])
+                tuple_comp = lambda tuple_var: tuple(b_5(*a) for a in zip(*tuple_var))
+                # print(tuple2(tuple1))
+                tuple1=[tup for tup in tuple_iter]
+                tuple2=tuple_comp(tuple_iter)
+                # if (tuple2==seek_tup) and (tuple2 in tuple1) == 1:
+                #     print("degenerate")
+                #     print(tuple1[0], tuple1[1], seek_tup)
+                #     return seek_tuple(seek_tup,data_init,step-1)
+                if (tuple2==seek_tup) and (tuple2 in tuple1) == 0:
+                    print("nondegenerate")
+                    print(tuple1[0], tuple1[1], seek_tup)
+                    if(tuple1[0] in data_init):
+                        tuplefirst=str((data_init.index(tuple1[0])))
+                        print(tuple1[0],"->",data_init.index(tuple1[0]))
+                    else:
+                        tuplefirst=seek_tuple(tuple1[0],data_init,step-1)
+                    if (tuple1[1] in data_init):
+                        print(tuple1[1],"->",data_init.index(tuple1[1]))
+                        tuplesecond = str((data_init.index(tuple1[1])))
+                    else:
+                        tuplesecond = seek_tuple(tuple1[1], data_init, step - 1)
+
+                    if(tuplefirst!="" and tuplesecond!=""): return "("+tuplefirst+','+tuplesecond+')'
+
+                    # print(data)
+        # below code fragment is used to show tuples from which a particular tuple may be derived
+
+        if (len(data) == n): break
+        n = len(data)
+        #return -1
+    return ""
 
 
 
