@@ -1,6 +1,10 @@
 def b_9(x,y):
     if(x!=2 or y!=0): return x
     else: return 1
+def b_10(x,y):
+    if(x==0 and y==2): return 1
+    elif (x==1 and y==2): return 0
+    else: return x
 def b_6(x, y):
     if (x == y): return x
     if (x == 0 and y == 1): return 1
@@ -150,6 +154,7 @@ def check_s_2_out_tup(tup:tuple)->int:
     if (tup[3] == 1 and tup[4] == 1 and  tup[7] == 2  and tup[8] == 2): return 0
     if (tup[5] == 1 and tup[6] == 1 and  tup[7] == 2  and tup[9] == 2): return 0
     return 1
+def seek_tuple(seek_tup,data_init,step):
 
 
 

@@ -53,6 +53,7 @@ while True:
     z = itertools.product(data, repeat=3)
     data = data.union(data2)
     # below code fragment is used to show tuples from which a particular tuple may be derived
+
     for tuple1 in z:
         tuple2 = lambda tuple1: tuple(f.s_5(*a) for a in zip(*tuple1))
         #print(tuple2(tuple1))
