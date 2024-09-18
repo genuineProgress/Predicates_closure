@@ -2,7 +2,7 @@ tm=1 #that variable tells whether matrix from input_file_path should be transpos
 rp=1 #that variable tells whether program (except transposition) should be executed, 1 - yes, 0 - no
 st=1  #that variable tells whether program should seek for a specified tuple (seek_tup) path, 1 - yes, 0 - no
 input_file_path = output_file_path = 'predicates/data_b_5_new_test_seek_11'
-seek_tup=tuple([2,0,0,1,1,2,2])
+seek_tup=tuple([2,0,0,1,1,2,0])
 # from inspect import signature
 import itertools
 import sys

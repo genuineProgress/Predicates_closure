@@ -159,6 +159,7 @@ def seek_tuple(seek_tup,data_init,step)->str:
     print(seek_tup)
     iteration = 0
     data = set(data_init)
+    tuplefirst=tuplesecond=""
     while step==-1 or iteration<=step:
         #print(data)
         #print(1)
@@ -188,13 +189,14 @@ def seek_tuple(seek_tup,data_init,step)->str:
                         tuplefirst=str((data_init.index(tuple1[0])))
                         print(tuple1[0],"->",data_init.index(tuple1[0]))
                     else:
-                        tuplefirst=seek_tuple(tuple1[0],data_init,step-1)
+                        for iter in range (0,step):
+                            if(tuplefirst==""): tuplefirst=seek_tuple(tuple1[0],data_init,iter)
                     if (tuple1[1] in data_init):
                         print(tuple1[1],"->",data_init.index(tuple1[1]))
                         tuplesecond = str((data_init.index(tuple1[1])))
                     else:
-                        tuplesecond = seek_tuple(tuple1[1], data_init, step - 1)
-
+                        for iter in range (0,step):
+                            if(tuplesecond==""): tuplesecond=seek_tuple(tuple1[1],data_init,iter)
                     if(tuplefirst!="" and tuplesecond!=""): return "("+tuplefirst+','+tuplesecond+')'
 
                     # print(data)
