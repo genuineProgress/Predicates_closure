@@ -1,8 +1,8 @@
 tm=1 #that variable tells whether matrix from input_file_path should be transposed before processing, 1 - yes, 0 - no
 rp=1 #that variable tells whether program (except transposition) should be executed, 1 - yes, 0 - no
 st=1  #that variable tells whether program should seek for a specified tuple (seek_tup) path, 1 - yes, 0 - no
-input_file_path = output_file_path = 'predicates/data_b_5_new_test_seek_7'
-seek_tup=tuple([2,0,0,0,1,2,2,2,2,2,2,2,0])
+input_file_path = output_file_path = 'predicates/data_b_5_new_test_seek_11'
+seek_tup=tuple([2,0,0,1,1,2,2])
 # from inspect import signature
 import itertools
 import sys
@@ -24,7 +24,7 @@ print(count)
 print(data2)
 data = data2
 data = set(data)
-data_init=data
+data_init=data2
 #prel_data2=o.generate_columns(12)
 # data2=set()
 # for elem in prel_data2:
@@ -47,24 +47,11 @@ data_init=data
 #printing columns of our predicate as tuples
 #for tup in data:
 #    print(tup)
+# for tup in itertools.product(data,repeat=2):
+#     print(tup[0], tup[1])
 if(st==1):
-    seek_tup=[seek_tup]
-    seek_tup=set(seek_tup)
-    seeked_already=set()
-    while(len(seek_tup.intersection(data))!=0):
-            #print(seek_tup.intersection(data))
-            #print(2)
-            z = itertools.product(data, repeat=2)
-            for tuple1 in z:
-                tuple2 = lambda tuple1: tuple(f.b_5(*a) for a in zip(*tuple1))
-                # print(tuple2(tuple1))
-                if (tuple2(tuple1) in seek_tup & data) and (tuple2(tuple1) in tuple1)==0:
-                    seek_tup.remove(tuple2(tuple1))
-                    print(tuple2(tuple1),tuple1,sep="->")
-                    for tup in tuple1:
-                        if((tup in data_init)==0) and ((tup in seeked_already)==0):
-                            seek_tup.add(tup)
-                            seeked_already.add(tup)
+    print(f.seek_tuple(seek_tup,data_init,-1))
+    #print(1)
         #break
 
 #print({(2,2)} & {(2,2)})
