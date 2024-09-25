@@ -155,17 +155,18 @@ def check_s_2_out_tup(tup:tuple)->int:
     if (tup[3] == 1 and tup[4] == 1 and  tup[7] == 2  and tup[8] == 2): return 0
     if (tup[5] == 1 and tup[6] == 1 and  tup[7] == 2  and tup[9] == 2): return 0
     return 1
-def seek_tuple(seek_tup,data_init,step)->str:
+def seek_tuple(seek_tup,data_init,comp_tuples,comp_rep,step)->str:
     print(seek_tup)
     iteration = 0
     data = set(data_init)
     tuplefirst=tuplesecond=""
-    while step==-1 or iteration<=step:
+    while step==-1 or iteration<step:
         #print(data)
         #print(1)
         iteration=iteration+1
         n = len(data)
-        print(step,iteration,n,data)
+        #print(step,iteration,n,data)
+        print(step, iteration, n)
         x = itertools.product(data, repeat=2)
         data2 = set(map(lambda y: tuple(b_5(*a) for a in zip(*y)), x))
         data = data.union(data2)
@@ -188,16 +189,26 @@ def seek_tuple(seek_tup,data_init,step)->str:
                     if(tuple1[0] in data_init):
                         tuplefirst=str((data_init.index(tuple1[0])))
                         print(tuple1[0],"->",data_init.index(tuple1[0]))
+                    elif(tuple1[0] in comp_tuples):tuplefirst=comp_rep[comp_tuples.index(tuple1[0])]
                     else:
                         for iter in range (0,step):
-                            if(tuplefirst==""): tuplefirst=seek_tuple(tuple1[0],data_init,iter)
+                            if(tuplefirst==""): tuplefirst=seek_tuple(tuple1[0],data_init,comp_tuples,comp_rep,iter)
                     if (tuple1[1] in data_init):
                         print(tuple1[1],"->",data_init.index(tuple1[1]))
                         tuplesecond = str((data_init.index(tuple1[1])))
+                    elif (tuple1[1] in comp_tuples):
+                        tuplesecond = comp_rep[comp_tuples.index(tuple1[1])]
                     else:
                         for iter in range (0,step):
-                            if(tuplesecond==""): tuplesecond=seek_tuple(tuple1[1],data_init,iter)
-                    if(tuplefirst!="" and tuplesecond!=""): return "("+tuplefirst+','+tuplesecond+')'
+                            if(tuplesecond==""): tuplesecond=seek_tuple(tuple1[1],data_init,comp_tuples,comp_rep,iter)
+                    if(tuplefirst!="" and tuplesecond!=""):
+                        if(tuple1[0] in comp_tuples)==0:
+                            comp_tuples.append(tuple1[0])
+                            comp_rep.append(tuplefirst)
+                        if (tuple1[1] in comp_tuples) == 0:
+                            comp_tuples.append(tuple1[1])
+                            comp_rep.append(tuplesecond)
+                        return "("+tuplefirst+','+tuplesecond+')'
 
                     # print(data)
         # below code fragment is used to show tuples from which a particular tuple may be derived
